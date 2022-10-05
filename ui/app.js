@@ -27,6 +27,11 @@ let impoundChanged = false;
 // TEMP CONFIG OF JOBS
 const PoliceJobs = {
   ['police']: true,
+  ['sheriff']: true,
+  ['lspd']: true,
+  ['lscs']: true,
+  ['sahp']: true,
+  ['bcso']: true,
 }
 
 const AmbulanceJobs = {
@@ -1346,11 +1351,9 @@ $(document).ready(() => {
         }
       });
 
-      $(".bolo-gallery-inner-container")
-      .find("img")
-      .each(function () {
-        if ($(this).attr("src") != "") {
-          gallery.push($(this).attr("src"));
+      $(".bolo-gallery-inner-container").each(function (index) {
+        if ($(this).text() != "") {
+          gallery.push($(this).text());
         }
       });
 
@@ -3550,8 +3553,8 @@ $(document).ready(() => {
           "--color-10",
           "#8f741b"
         );
-        $(".badge-logo").attr("src", "img/sasp_badge.png");
-        $(".header-title").html("SAN ANDREAS STATE POLICE");
+        $(".badge-logo").attr("src", "img/logofull.png");
+        $(".header-title").html("The Co-Op Metavesrse MDT");
         $(".bolo-nav-item").html("BOLOs");
         $(".bolos-search-title").html("Bolos");
         $("#bolos-search-input").attr("placeholder", "Search Bolo...");
@@ -3862,7 +3865,17 @@ $(document).ready(() => {
         let activeInfoJob = `<div class="unit-job active-info-job-unk">UNKNOWN</div>`;
         if (PoliceJobs[unit.unitType] !== undefined) {
           policeCount++;
-          activeInfoJob = `<div class="unit-job active-info-job-lspd">LSPD</div>`;
+          if (unit.unitType == "police") {
+            activeInfoJob = `<div class="unit-job active-info-job-police">Police</div>`;
+          } else if(unit.unitType == "lspd")  {
+            activeInfoJob = `<div class="unit-job active-info-job-lspd">LSPD</div>`;
+          } else if(unit.unitType == "lscs")  {
+            activeInfoJob = `<div class="unit-job active-info-job-lscs">LSCS</div>`;
+          } else if(unit.unitType == "sahp")  {
+            activeInfoJob = `<div class="unit-job active-info-job-sahp">SAHP</div>`;
+          } else if(unit.unitType == "bcso")  {
+            activeInfoJob = `<div class="unit-job active-info-job-bcso">BCSO</div>`;
+          }
         } else if (AmbulanceJobs[unit.unitType] !== undefined) {
           activeInfoJob = `<div class="unit-job active-info-job-ambulance">Ambulance</div>`
           emsCount++;

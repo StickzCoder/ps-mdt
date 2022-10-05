@@ -565,7 +565,7 @@ RegisterNUICallback("saveVehicleInfo", function(data, cb)
     local code5 = data.code5
     local impound = data.impound
     local JobType = GetJobType(PlayerData.job.name)
-    if JobType == 'police' and impound.impoundChanged == true then
+    if JobType == 'police' or JobType == 'sheriff' or JobType == 'lspd' or JobType == 'lscs' or JobType == 'sahp' or JobType == 'bcso' and impound.impoundChanged == true then
         if impound.impoundActive then
             local found = 0
             local plate = string.upper(string.gsub(data['plate'], "^%s*(.-)%s*$", "%1"))
@@ -794,7 +794,7 @@ end)
 
 --[[ RegisterNUICallback("impoundVehicle", function(data, cb)
     local JobType = GetJobType(PlayerData.job.name)
-    if JobType == 'police' then
+    if JobType == 'police' or JobType == 'sheriff' or JobType == 'lspd' or JobType == 'lscs' or JobType == 'sahp' or JobType == 'bcso' then
         local found = 0
         local plate = string.upper(string.gsub(data['plate'], "^%s*(.-)%s*$", "%1"))
         local vehicles = GetGamePool('CVehicle')

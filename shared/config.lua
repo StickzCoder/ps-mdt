@@ -1,10 +1,13 @@
 Config = Config or {}
 
 Config.RosterLink = {
-    ['police'] = '',
-    ['ambulance'] = '',
-    ['bcso'] = '',
-    ['doj'] = '',
+    ['police'] = 'LEO',
+    ['sheriff'] = 'sheriff',
+    ['lspd'] = 'LSPD',
+    ['lscs'] = 'LSCS',
+	['sahp'] = 'SAHP',
+    ['bcso'] = 'BCSO',
+	['ambulance'] = 'Med',
 }
 
 
@@ -239,13 +242,11 @@ Config.PenalCode = {
 
 Config.PoliceJobs = {
     ['police'] = true,
+	['sheriff'] = true,
     ['lspd'] = true,
+    ['lscs'] = true,
+    ['sahp'] = true,
     ['bcso'] = true,
-    ['sast'] = true,
-    ['sasp'] = true,
-    ['doc'] = true,
-    ['sapr'] = true,
-    ['pa'] = true -- yucky
 }
 
 Config.AmbulanceJobs = {
@@ -271,10 +272,25 @@ end
 -- Leave my hacky code alone ya goblins
 
 Config.LogPerms = {
-	['ambulance'] = {
+	['police'] = {
 		[4] = true,
 	},
-	['police'] = {
+	['sheriff'] = {
+		[4] = true,
+	},
+	['lspd'] = {
+		[4] = true,
+	},
+	['lscs'] = {
+		[4] = true,
+	},
+	['sahp'] = {
+		[4] = true,
+	},
+	['bcso'] = {
+		[4] = true,
+	},	
+	['ambulance'] = {
 		[4] = true,
 	},
 }
@@ -631,6 +647,16 @@ Config.ClassList = {
 function GetJobType(job)
 	if Config.PoliceJobs[job] then
 		return 'police'
+	elseif Config.PoliceJobs[job] then
+		return 'sheriff'
+	elseif Config.PoliceJobs[job] then
+		return 'lspd'
+	elseif Config.PoliceJobs[job] then
+		return 'lscs'
+	elseif Config.PoliceJobs[job] then
+		return 'sahp'	
+	elseif Config.PoliceJobs[job] then
+		return 'bcso'			
 	elseif Config.AmbulanceJobs[job] then
 		return 'ambulance'
 	elseif Config.DojJobs[job] then
